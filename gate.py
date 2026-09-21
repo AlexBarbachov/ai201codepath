@@ -56,3 +56,5 @@ def check(results: list[Result], threshold: float | None = None) -> GateDecision
 
     best = min(r.distance for r in results)
     return GateDecision(passed=best < threshold, best_distance=best, threshold=threshold)
+
+ 
