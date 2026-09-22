@@ -78,23 +78,35 @@ The good: cheapest housing tier by about $900 a year, and the singles are real s
      visible. Milestone 4. -->
 
 **Question:**
-
+How long do you have to add a new course?
 **Answer:**
+(best distance 0.391, cutoff 0.6)
 
-```
-```
+You can add a course through the end of the second week (admin_add_drop_deadline.txt).
+
+Sources retrieved: admin_add_drop_deadline.txt, admin_pass_fail_option.txt, advising_registration.txt, course_biol_160.txt, money_jobs.txt
+
+1 model calls this session, 401 tokens (378 in, 23 out)
+
 
 **My relevance cutoff:**
 
-<!-- The number you set in config.py, and how you got there.
+**My relevance cutoff:** 0.55
 
-     You ran five questions your corpus covers and the five in OUT_OF_SCOPE
-     that it clearly doesn't, and wrote down the best distance for each. What
-     did those two groups look like? Where was the gap? Put the actual numbers
-     here — the table below wants all ten rows.
+I found a clean gap between my in-scope questions and out-of-scope questions. The worst-matching valid question had a distance of 0.391, while the best-matching irrelevant question had a distance of 0.780. I placed my cutoff at 0.55, safely in the middle of this gap, to ensure the system refuses off-topic prompts without accidentally blocking real queries.
 
-     Milestone 4. -->
-
+| Question | In corpus? | Best distance |
+|---|---|---|
+| How long do you have to add a new course? | Yes | 0.391 |
+| When do leftover dining dollars disappear? | Yes | 0.294 |
+| How many days do you have to raise a grade appeal? | Yes | 0.156 |
+| How many days into the semester can you change your meal plan tier? | Yes | 0.168 |
+| Which parking lot never sells out of permits? | Yes | 0.279 |
+| What is the capital of Mongolia? | No | 0.799 |
+| How do I change the oil in a diesel engine? | No | 0.850 |
+| Who won the 1994 World Cup? | No | 0.780 |
+| What is the recommended dosage of ibuprofen for a headache? | No | 0.824 |
+| How do I write a for loop in Rust? | No | 0.831 |
 | Question | In corpus? | Best distance |
 |---|---|---|
 |  |  |  |
