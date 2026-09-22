@@ -28,6 +28,9 @@
      Milestone 5. -->
 
 ## Chunking Strategy
+Chunk Size: 1 paragraph
+
+I chose to split cleanly by paragraph because the campus_life documents are short, and facts sit in a single sentence. Splitting by paragraph ensures no sentences are cut in half and keeps chunks well under my 150 word limit.
 
 **Chunk size:**
 **Overlap:**
@@ -43,40 +46,31 @@
      Milestone 3. -->
 
 ## Sample Chunks
-
-<!-- Five chunks, pasted as text. Label each one and name the file it came from
-     AND the function that produced it — the grader checks your code against
-     what you claim here.
-
-     `python app.py chunks -n 5` prints all three for you. Copy them straight
-     across.
-
-     Milestone 3. -->
-
-**Chunk 1** — source: `` — produced by: ``
-
+**Chunk 1** — source: `admin_add_drop_deadline.txt#0` — produced by: `chunker.py::split_documents`
 ```
+On the add/drop deadline
 ```
 
-**Chunk 2** — source: `` — produced by: ``
-
+**Chunk 2** — source: `course_cs_210_workload.txt#2` — produced by: `chunker.py::split_documents`
 ```
-```
-
-**Chunk 3** — source: `` — produced by: ``
-
-```
+It's front-loaded — the first month is heavier than the rest, partly because you're learning the format.
 ```
 
-**Chunk 4** — source: `` — produced by: ``
+**Chunk 3** — source: `course_phys_130.txt#3` — produced by: `chunker.py::split_documents`
+```
+The one piece of advice: the lab practical is worth 20% and almost nobody prepares for it.
+```
 
+**Chunk 4** — source: `dining_verrill_street_grill.txt#1` — produced by: `chunker.py::split_documents`
 ```
+I'm a junior and I've done this twice now. Wait times: up to 30 minutes on Friday evenings, otherwise under 10. The thing worth going for is the burger, which is the only late-night hot food on campus. The thing to know is that one register, so the queue is a single line no matter how busy.
 ```
 
-**Chunk 5** — source: `` — produced by: ``
+**Chunk 5** — source: `housing_morrow_house.txt#2` — produced by: `chunker.py::split_documents`
+```
+The good: cheapest housing tier by about $900 a year, and the singles are real singles.
+```
 
-```
-```
 
 ## Sample Answer
 
