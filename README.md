@@ -21,29 +21,14 @@
 
 ## What This Does
 
-<!-- Three or four sentences. Which corpus you picked, and the kinds of
-     questions your system answers. Write it for someone who has never seen
-     this repo.
-
-     Milestone 5. -->
+This project is a RAG system designed to act a guide to the campus life. It uses documents that detail dorms, dining halls, course workloads, and administrative policies. Users can ask everyday student questions, such as drop deadlines, and the system retrieves the relevant texts to generate a direct, cited answer. It also features a relevance gate that actively blocks out-of-scope questions to prevent hallucinations.
 
 ## Chunking Strategy
-Chunk Size: 1 paragraph
 
 I chose to split cleanly by paragraph because the campus_life documents are short, and facts sit in a single sentence. Splitting by paragraph ensures no sentences are cut in half and keeps chunks well under my 150 word limit.
 
-**Chunk size:**
-**Overlap:**
-
-<!-- What about YOUR documents made you pick these numbers? Short posts and
-     long sectioned guides don't want the same chunking, and "800 seemed
-     reasonable" earns nothing. Point at something you noticed when you read
-     the documents in Milestone 1.
-
-     If you changed your mind partway through, say so and say why. That's worth
-     more than pretending you got it right first time.
-
-     Milestone 3. -->
+**Chunk size:** 1 paragraph 2-3 sentences
+**Overlap:** 0
 
 ## Sample Chunks
 **Chunk 1** — source: `admin_add_drop_deadline.txt#0` — produced by: `chunker.py::split_documents`
@@ -74,13 +59,12 @@ The good: cheapest housing tier by about $900 a year, and the singles are real s
 
 ## Sample Answer
 
-<!-- One complete question and answer, pasted as text, with the source line
-     visible. Milestone 4. -->
 
 **Question:**
 How long do you have to add a new course?
 **Answer:**
-(best distance 0.391, cutoff 0.6)
+python app.py ask "How long do you have to add a new course?"
+  (best distance 0.391, cutoff 0.6)
 
 You can add a course through the end of the second week (admin_add_drop_deadline.txt).
 
@@ -88,8 +72,6 @@ Sources retrieved: admin_add_drop_deadline.txt, admin_pass_fail_option.txt, advi
 
 1 model calls this session, 401 tokens (378 in, 23 out)
 
-
-**My relevance cutoff:**
 
 **My relevance cutoff:** 0.55
 
@@ -113,18 +95,11 @@ I found a clean gap between my in-scope questions and out-of-scope questions. Th
 
 ## How I Used AI
 
-<!-- Two specific moments. For each: what you asked for, what came back, and
-     what you changed about it.
 
-     "I asked Claude to write the chunking function from my notes. It ignored
-     the overlap, so I added that myself" is the level of detail we're after.
-     "I used AI to help me code" is not.
+**1.** I asked Gemini to help me analyze the distance scores from my terminal output to determine the optimal relevance cutoff. Gemini calculated the gap between my worst in-scope question (0.391) and my best out-of-scope question (0.780) and suggested setting the threshold safely in the middle at 0.55 (which i just realized i forgot to change haha). I used that exact number in my `config.py` and used the markdown table it generated for my README.
 
-     Milestone 5. -->
+**2.** I also asked Gemini to help write the Python logic for splitting text files by paragraphs in the chunker.py. Gemini provided a code snippet using .split but the resulting chunks contained the trialing whitespace so i change the code to include the .strip method and also add a filter to remove any empty chunks.
 
-**1.**
-
-**2.**
 
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never
