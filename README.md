@@ -116,23 +116,61 @@ I found a clean gap between my in-scope questions and out-of-scope questions. Th
 
 ## Run Log — Before
 
-<!-- Your five criteria, three runs each. `python run_eval.py --label before`
-     runs the questions, puts the OUT_OF_SCOPE ones through the gate, and
-     writes it all into results/ for you. Targets come from criteria.md; the
-     verdict column is your call.
+# Unit 2
 
-     Criterion 3 is measured in one deterministic pass rather than three, so
-     the same number goes in all three run columns. That's correct, not lazy.
-
-     Milestone 1. -->
+## Run Log — Before
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunk contains the answer | 4 of 5 | Pass | Pass | Pass | Pass |
+| 2. Every answer names a source | 5 of 5 | Pass | Pass | Pass | Pass |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | Pass | Pass | Pass | Pass |
+| 4. No chunk returned exceeds 150 words | 5 of 5 | Pass | Pass | Pass | Pass |
+| 5. Generated answer is under 3 sentences | 5 of 5 | Pass | Pass | Pass | Pass |
+
+## Real Output
+
+How long do you have to add a new course?
+  run 1: —  (best distance 0.391)
+  run 2: —  (best distance 0.391)
+  run 3: —  (best distance 0.391)
+
+When do leftover dining dollars disappear?
+  run 1: —  (best distance 0.294)
+  run 2: —  (best distance 0.294)
+  run 3: —  (best distance 0.294)
+
+How many days do you have to raise a grade appeal?
+  run 1: —  (best distance 0.156)
+  run 2: —  (best distance 0.156)
+  run 3: —  (best distance 0.156)
+
+How many days into the semester can you change your meal plan tier?
+  run 1: —  (best distance 0.168)
+  run 2: —  (best distance 0.168)
+  run 3: —  (best distance 0.168)
+
+Which parking lot never sells out of permits?
+  run 1: —  (best distance 0.279)
+  run 2: —  (best distance 0.279)
+  run 3: —  (best distance 0.279)
+
+Out-of-scope questions (the gate should refuse these):
+  refused  (best distance 0.799)  What is the capital of Mongolia?
+  refused  (best distance 0.850)  How do I change the oil in a diesel engine?
+  refused  (best distance 0.780)  Who won the 1994 World Cup?
+  refused  (best distance 0.824)  What is the recommended dosage of ibuprofen for a headache?
+  refused  (best distance 0.831)  How do I write a for loop in Rust?
+  -> gate refused 5 of 5
+
+
+| Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
+|---|---|---|---|---|---|
+| 1. Retrieved chunk contains the answer | 4 of 5 | Pass | Pass | Pass | Pass |
+| 2. Every answer names a source | 5 of 5 | Pass | Pass | Pass | Pass |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | Pass | Pass | Pass | Pass |
+| 4. No chunk returned exceeds 150 words | 5 of 5 | Pass | Pass | Pass | Pass |
+| 5. Generated answer is under 3 sentences | 5 of 5 | Pass | Pass | Pass | Pass |
 
 <!-- Underneath, paste the REAL output for each criterion from one of your
      runs — the actual text your system produced, not a description of it.
