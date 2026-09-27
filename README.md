@@ -197,23 +197,14 @@ Out-of-scope questions (the gate should refuse these):
 
 ## Diagnoses
 
-<!-- For each miss: which stage caused it, and how. The stage alone isn't
-     enough — you need the mechanism.
+## Diagnoses
 
-     Not a diagnosis: "Question 3 didn't work."
-     A diagnosis:     "Question 3 asks about laundry costs. The answer is in
-                       one sentence that got split across two chunks, so
-                       neither chunk on its own contains it."
+I missed nothing at all; the system met every target across all three runs. 
 
-     The five stages: loading → chunking → embedding → retrieval → generation.
+Because the baseline system cleared every criterion on the first try without any modifications, it indicates that my targets were likely set too low, or my test questions were easily handled by the default semantic search. 
 
-     Look for a pattern. If three misses all ask about numbers, that's one
-     problem, not three.
+One criterion I would potentially change, is Criterion 1 which says the "retrieved chunk contains the answer". Because currently, it only requires the answer to be present somewhere in the retrieved chunks for 4 ouf of 5 questions. I would make it require that the answer is found in the very first retrived chunk for 5 out of 5 questions. This would force me to change the retrieval strategy to make it more accurate instead of relying on the llm.
 
-     Missed nothing? Say so, then say honestly whether your targets were set
-     low, and which one you'd tighten and to what.
-
-     Milestone 3. -->
 
 ## The Improvement
 
