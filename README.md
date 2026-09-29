@@ -195,7 +195,6 @@ Out-of-scope questions (the gate should refuse these):
 | 4 | No chunk returned exceeds 150 words | MET | The system's chunking strategy splits strictly by paragraph (2-3 sentences), inherently guaranteeing chunks stay well under the 150-word limit. |
 | 5 | Generated answer is under 3 sentences | MET | The LLM consistently generated concise, direct answers within the 1-2 sentence range across all test queries. |
 
-## Diagnoses
 
 ## Diagnoses
 
@@ -206,36 +205,25 @@ Because the baseline system cleared every criterion on the first try without any
 One criterion I would potentially change, is Criterion 1 which says the "retrieved chunk contains the answer". Because currently, it only requires the answer to be present somewhere in the retrieved chunks for 4 ouf of 5 questions. I would make it require that the answer is found in the very first retrived chunk for 5 out of 5 questions. This would force me to change the retrieval strategy to make it more accurate instead of relying on the llm.
 
 
-## The Improvement
+### The Improvement
 
-**What I changed:**
+**What I changed:** Changed `TOP_K = 5` to `TOP_K = 1` in `config.py`.
 
-**Why I picked it:**
-
-<!-- Connect it to a specific diagnosis above in one sentence. If you can't,
-     you picked a fix because it sounded impressive. -->
+**Why I picked it:** In my Milestone 3 diagnosis, I noted that because my baseline system cleared every criterion easily, I wanted to test whether my semantic search precision was strong enough to answer questions using only the single top-ranked chunk, rather than relying on the LLM to filter through five retrieved chunks.
 
 ### Run Log — After
 
-<!-- Same format, same five criteria, three runs each.
-     `python run_eval.py --label after` -->
-
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunk contains the answer | 4 of 5 | Pass | Pass | Pass | Pass |
+| 2. Every answer names a source | 5 of 5 | Pass | Pass | Pass | Pass |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | Pass | Pass | Pass | Pass |
+| 4. No chunk returned exceeds 150 words | 5 of 5 | Pass | Pass | Pass | Pass |
+| 5. Generated answer is under 3 sentences | 5 of 5 | Pass | Pass | Pass | Pass |
 
 **Did it help?**
 
-<!-- Say plainly whether it did, and how you know. If it made things worse,
-     say that — a change that backfired, honestly reported, earns full credit
-     and is more interesting than one that worked. What matters is that you can
-     tell.
-
-     Milestone 4. -->
+Yes. The system maintained 100% accuracy across all criteria with `TOP_K = 1`. More importantly, reducing top-k cut prompt token usage almost in half (from 5,751 tokens down to 2,930 tokens across the 15 evaluation calls), making retrieval significantly faster and more cost-effective without sacrificing answer quality or source citation.
 
 ## What's Still Broken
 
