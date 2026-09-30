@@ -227,17 +227,17 @@ Yes. The system maintained 100% accuracy across all criteria with `TOP_K = 1`. M
 
 ## What's Still Broken
 
-<!-- For each criterion still missed after your fix: what you'd do about it,
-     and why you stopped where you did.
+Since my system passed all criteria even after reducing `TOP_K` to 1, nothing is technically "broken" according to my current rubric. 
 
-     "I ran out of time" is fine if it's true. Pretending nothing is left is
-     not.
-
-     Milestone 5. -->
+However, if I stopped here, I'd be ignoring a massive blind spot: setting `TOP_K = 1` makes it impossible to answer questions that require synthesizing information from multiple documents (e.g., "Compare the workloads of CS 210 and PHYS 130"). I stopped here because my current test questions are all single-fact lookups, which `TOP_K = 1` handles perfectly while saving tokens. But in a real-world setting with more complex user queries, this limitation would break the system immediately.
 
 ## What I'd Do Differently
 
-<!-- Knowing what you know now — which of your five criteria would you write
-     differently, and why?
+Knowing what I know now, I would completely rewrite **Criterion 1**. 
 
-     Milestone 5. -->
+Right now, my test questions only require simple, single-document lookups. Next time, I would write a criterion that explicitly tests multi-document synthesis to prevent me from relying on a `TOP_K = 1` shortcut. I would change it to for example: *"For at least 2 out of 5 questions, the system successfully combines information from at least two distinct source files to form a complete answer."* 
+
+## How I Used AI (Unit 2 Update)
+
+**3.** I used Gemini heavily during Unit 2 to troubleshoot Google API `503 Server Unavailable` errors and rate limits that were crashing my evaluation script. Gemini suggested bypassing the automated `scorer.py` entirely to run the script "unscored," which allowed me to generate the raw markdown run logs and unblock my progress.
+**4.** I also used Gemini as a sounding board to help diagnose my perfect baseline run, format my evaluation tables, and brainstorm the `TOP_K = 1` experiment to deliberately challenge my system's retrieval precision.
